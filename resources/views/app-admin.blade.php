@@ -118,13 +118,156 @@
                                     <li class="active">
                                 @else
                                     <li>
-                                        @endif
+                                @endif
                                         <a href="{{action('AdminController@getBlog')}}">
                                             Blog
                                         </a>
                                     </li>
                             </ul>
                         </li>
+
+                        @if(isset($blogactive))
+                            <li class="start active open">
+                        @else
+                            <li class="start">
+                                @endif
+                                <a href="javascript:;">
+                                    <i class="icon-docs"></i>
+                                    <span class="title">Վաճառք</span>
+                                    <span class="selected"></span>
+                                    <span class="arrow open"></span>
+                                </a>
+                                <ul class="sub-menu">
+                                    @if(isset($blogactive))
+                                        <li class="active">
+                                    @else
+                                        <li>
+                                            @endif
+                                            <a href="#">
+                                                Բնակարան
+                                            </a>
+                                        </li>
+                                        <li>
+
+                                            <a href="#">
+                                                Կոմերցիոն
+                                            </a>
+                                        </li>
+                                        <li>
+
+                                            <a href="#">
+                                                Առանձնատուն
+                                            </a>
+                                        </li><li>
+
+                                            <a href="#">
+                                                Հողատարածք
+                                            </a>
+                                        </li>
+
+                                </ul>
+                            </li>
+
+                            @if(isset($blogactive))
+                                <li class="start active open">
+                            @else
+                                <li class="start">
+                                    @endif
+                                    <a href="javascript:;">
+                                        <i class="icon-docs"></i>
+                                        <span class="title">Վարձույթ</span>
+                                        <span class="selected"></span>
+                                        <span class="arrow open"></span>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        @if(isset($blogactive))
+                                            <li class="active">
+                                        @else
+                                            <li>
+                                                @endif
+                                                <a href="#">
+                                                    Բնակարան
+                                                </a>
+                                            </li>
+                                            <li>
+
+                                                <a href="#">
+                                                    Կոմերցիոն
+                                                </a>
+                                            </li>
+                                            <li>
+
+                                                <a href="#">
+                                                    Առանձնատուն
+                                                </a>
+                                            </li><li>
+
+                                                <a href="#">
+                                                    Հողատարածք
+                                                </a>
+                                            </li>
+
+                                    </ul>
+                                </li>
+
+                                @if(isset($blogactive))
+                                    <li class="start active open">
+                                @else
+                                    <li class="start">
+                                        @endif
+                                        <a href="javascript:;">
+                                            <i class="icon-docs"></i>
+                                            <span class="title">Օրավարձ</span>
+                                            <span class="selected"></span>
+                                            <span class="arrow open"></span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            @if(isset($blogactive))
+                                                <li class="active">
+                                            @else
+                                                <li>
+                                                    @endif
+                                                    <a href="#">
+                                                        Բնակարան
+                                                    </a>
+                                                </li>
+                                                <li>
+
+                                                    <a href="#">
+                                                        Առանձնատուն
+                                                    </a>
+                                                </li>
+
+
+                                        </ul>
+                                    </li>
+
+                                    @if(isset($blogactive))
+                                        <li class="start active open">
+                                    @else
+                                        <li class="start">
+                                            @endif
+                                            <a href="#">
+                                                <i class="icon-docs"></i>
+                                                <span class="title">Մեր Մասին</span>
+
+                                            </a>
+
+                                        </li>
+
+                                    @if(isset($blogactive))
+                                        <li class="start active open">
+                                    @else
+                                        <li class="start">
+                                            @endif
+                                            <a href="#">
+                                                <i class="icon-docs"></i>
+                                                <span class="title">Հետադարձ Կապ</span>
+
+                                            </a>
+
+                                        </li>
+
 
 
             </ul>

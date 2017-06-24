@@ -240,5 +240,7 @@ class AdminController extends BaseController
         return redirect()->back()->with('message','Deleted Successfully');
     }
 
+    
+
 
 }
