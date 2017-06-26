@@ -39,4 +39,7 @@ Route::get('admin/sale-home','AdminController@getSaleHome');
 Route::get('admin/sale-add-home','AdminController@getAddSaleHome');
 Route::post('admin/sale-add-home','AdminController@postAddSaleHome');
 Route::get('admin/sale-add-home-delete/{id}','AdminController@getDeleteSaleHome');
+Route::get('admin/sale-home-edit/{id}','AdminController@getEditSalesHome');
+Route::post('admin/sale-edit-home','AdminController@postEditSaleHome');
+Route::get('admin/add-gallery-home-sales','AdminController@getAddGalleryHomeSales');
 //endsale

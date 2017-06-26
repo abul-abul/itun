@@ -52,14 +52,19 @@
                                         </td>
                                         <td>{{date('d/m/Y', strtotime($salesHome->created_at))}}</td>
                                         <td>
-                                            <a href="{{action('AdminController@getEditBlog',$salesHome->id)}}">
+                                            <a href="{{action('AdminController@getEditSalesHome',$salesHome->id)}}">
                                                 <button class="btn green">
                                                     <i class="glyphicon glyphicon-pencil"></i>
                                                 </button>
                                             </a>
                                             <button data-href="{{action('AdminController@getDeleteSaleHome',$salesHome->id)}}" data-toggle="modal" data-target="#myModal" type="button" class="btn btn-danger click_del">
-                                            <i class="fa fa-trash-o bigger-120"></i>
-                                        </button>
+                                                <i class="fa fa-trash-o bigger-120"></i>
+                                            </button>
+                                            <a href="{{action('AdminController@getAddGalleryHomeSales')}}">
+                                                <button class="btn warning">
+                                                    <i class="glyphicon glyphicon-picture"></i>
+                                                </button>
+                                            </a>
                                         </td>
 
                                     </tr>

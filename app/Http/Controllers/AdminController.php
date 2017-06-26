@@ -302,13 +302,72 @@ class AdminController extends BaseController
         return redirect()->action('AdminController@getSaleHome')->with('message','adding was succesfully');
     }
 
+    /**
+     * @param $id
+     * @param SaleInterface $saleRepo
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getDeleteSaleHome($id,SaleInterface $saleRepo)
     {
-        $result = $blogGalleryRepo->getOne($id);
-        $filename = public_path() . '/assets/images/blog-images/' . $result['images_gallery'];
+        $result = $saleRepo->getOne($id);
+        $filename = public_path() . '/assets/images/home-images/' . $result['images'];
         File::delete($filename);
-        $blogGalleryRepo->deleteData($id);
+        $saleRepo->deleteData($id);
         return redirect()->back()->with('message','Deleted Successfully');
+    }
+
+    /**
+     * @param $id
+     * @param SaleInterface $saleRepo
+     * @return View
+     */
+    public function getEditSalesHome($id,SaleInterface $saleRepo)
+    {
+        $result = $saleRepo->getOne($id);
+        $data = [
+            'salesHome' => $result,
+            'saleHomeActive' => 1
+        ];
+        return view('admin.sale.sale-home.sale-edit-home',$data);
+
+    }
+
+    /**
+     * @param Request $request
+     * @param SaleInterface $saleRepo
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postEditSaleHome(request $request,SaleInterface $saleRepo)
+    {
+        $result = $request->all();
+
+        if(isset($result['images'])){
+            $row = $saleRepo->getOne($result['id']);
+            $path = public_path() . '/assets/images/home-images/' . $row['images'];
+            File::delete($path);
+            $logoFile = $result['images']->getClientOriginalExtension();
+            $name = str_random(12);
+            $path = public_path() . '/assets/images/home-images';
+            $result_move = $result['images']->move($path, $name.'.'.$logoFile);
+            $gallery_images = $name.'.'.$logoFile;
+            $result['images'] = $gallery_images;
+            $saleRepo->getUpdateData($result['id'],$result);
+        }else{
+            $saleRepo->getUpdateData($result['id'],$result);
+        }
+        return redirect()->action('AdminController@getSaleHome')->with('message','Չեր փոփոխությունը հաջողությամբ կատարված է');
+
+    }
+
+    /**
+     * @return View
+     */
+    public function getAddGalleryHomeSales()
+    {
+        $data = [
+            'saleHomeActive' => 1
+        ];
+        return view('admin.sale.sale-home.gallery-home-sales',$data);
     }
     
 
