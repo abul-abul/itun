@@ -32,3 +32,11 @@ Route::get('admin/blog-delete/{id}','AdminController@getBlogDelete');
 Route::get('admin/blog-gallery-delete/{id}','AdminController@getBlogGalleryDelete');
 Route::post('admin/edit-blog','AdminController@postEditBlog');
 //end Blog
+
+
+//sale
+Route::get('admin/sale-home','AdminController@getSaleHome');
+Route::get('admin/sale-add-home','AdminController@getAddSaleHome');
+Route::post('admin/sale-add-home','AdminController@postAddSaleHome');
+Route::get('admin/sale-add-home-delete/{id}','AdminController@getDeleteSaleHome');
+//endsale

@@ -31,5 +31,9 @@ class AppServiceProvider extends ServiceProvider
             'App\Contracts\BlogGalleryInterface',
             'App\Services\BlogGalleryService'
         );
+        $this->app->bind(
+            'App\Contracts\SaleInterface',
+            'App\Services\SaleService'
+        );
     }
 }

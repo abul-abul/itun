@@ -126,7 +126,7 @@
                             </ul>
                         </li>
 
-                        @if(isset($blogactive))
+                        @if(isset($saleHomeActive))
                             <li class="start active open">
                         @else
                             <li class="start">
@@ -138,15 +138,19 @@
                                     <span class="arrow open"></span>
                                 </a>
                                 <ul class="sub-menu">
-                                    @if(isset($blogactive))
+                                    @if(isset($saleHomeActive))
                                         <li class="active">
                                     @else
                                         <li>
                                             @endif
-                                            <a href="#">
+
+                                            <a href="{{action('AdminController@getSaleHome')}}">
                                                 Բնակարան
                                             </a>
                                         </li>
+
+
+
                                         <li>
 
                                             <a href="#">

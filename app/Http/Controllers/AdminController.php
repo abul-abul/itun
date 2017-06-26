@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Contracts\BlogInterface;
 use App\Contracts\BlogGalleryInterface;
+use App\Contracts\SaleInterface;
 
 use View;
 use Session;
@@ -240,6 +241,75 @@ class AdminController extends BaseController
         return redirect()->back()->with('message','Deleted Successfully');
     }
 
+    /**
+     * @param SaleInterface $saleRepo
+     * @return View
+     */
+    public function getSaleHome(SaleInterface $saleRepo)
+    {
+        $result = $saleRepo->getAllPaginate();
+
+
+        $data = [
+            'salesHomes' => $result,
+            'saleHomeActive' => 1
+        ];
+        return view('admin.sale.sale-home.sale-home',$data);
+    }
+
+    /**
+     * @return View
+     */
+    public function getAddSaleHome(SaleInterface $saleRepo)
+    {
+
+        $data = [
+            'saleHomeActive' => 1
+        ];
+        return view('admin.sale.sale-home.sale-add-home',$data);
+    }
+
+    /**
+     * @param Request $request
+     * @param SaleInterface $saleRepo
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function postAddSaleHome(request $request,SaleInterface $saleRepo)
+    {
+        $result = $request->all();
+
+        $validator = Validator::make($result, [
+            'area' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+        if(isset($result['images'])){
+            $logoFile = $result['images']->getClientOriginalExtension();
+
+            $name = str_random(12);
+            $path = public_path() . '/assets/images/home-images/';
+
+            $result_move = $result['images']->move($path, $name.'.'.$logoFile);
+
+            $home = $name.'.'.$logoFile;
+            $result['images'] = $home;
+        }
+
+        unset($result['_token']);
+
+        $saleRepo->createData($result);
+        return redirect()->action('AdminController@getSaleHome')->with('message','adding was succesfully');
+    }
+
+    public function getDeleteSaleHome($id,SaleInterface $saleRepo)
+    {
+        $result = $blogGalleryRepo->getOne($id);
+        $filename = public_path() . '/assets/images/blog-images/' . $result['images_gallery'];
+        File::delete($filename);
+        $blogGalleryRepo->deleteData($id);
+        return redirect()->back()->with('message','Deleted Successfully');
+    }
     
 
 
